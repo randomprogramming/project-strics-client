@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
   activeLink: {
     color: theme.palette.text.secondary,
     backgroundColor: theme.palette.primary.main,
+    boxShadow: theme.shadows[10],
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.text.secondary,
