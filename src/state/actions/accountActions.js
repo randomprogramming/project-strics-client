@@ -9,16 +9,12 @@ const setAccount = (accountData) => {
 };
 
 export function fetchAndStoreAccount() {
-  console.log("fetching account");
   return function (dispatch) {
-    console.log("doing this func");
     Axios({
       method: "GET",
       url: "/api/logged-in-account",
     })
       .then((res) => {
-        console.log("no error when fetching");
-        console.log(res.data);
         dispatch(setAccount(res.data));
       })
       .catch((e) => {

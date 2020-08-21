@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flex: "1 1 auto",
     overflow: "hidden",
+    // 64 is the height of the AppBar, do NOT change this
     paddingTop: 64,
+    // 256 is the width of the Drawer, do NOT change this
     [theme.breakpoints.up("lg")]: {
       paddingLeft: 256,
     },

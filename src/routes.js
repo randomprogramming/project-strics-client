@@ -2,6 +2,9 @@ import React from "react";
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import { Dashboard } from "./views/Dashboard";
+import { Homepage } from "./views/Homepage";
+import { Login } from "./views/auth/Login";
+import { Register } from "./views/auth/Register";
 
 const routes = [
   {
@@ -17,6 +20,11 @@ const routes = [
   {
     path: "/",
     element: <MainLayout />,
+    children: [
+      { path: "", element: <Homepage /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
+    ],
   },
 ];
 
