@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-import { ListItem, Button, makeStyles, Typography } from "@material-ui/core";
+import { ListItem, Button, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   link: {

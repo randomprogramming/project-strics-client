@@ -38,9 +38,9 @@ const MainLayout = () => {
       <TransparentTopbar />
       <div className={classes.wrapper}>
         <div className={classes.contentContainer}>
-          <div className={classes.content}>
+          <Container maxWidth="xl" className={classes.content}>
             <Outlet />
-          </div>
+          </Container>
         </div>
       </div>
     </div>

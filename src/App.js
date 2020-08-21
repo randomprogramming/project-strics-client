@@ -13,6 +13,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchAndStoreAccount());
+    //eslint-disable-next-line
   }, []);
 
   return (

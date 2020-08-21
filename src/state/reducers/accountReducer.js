@@ -8,7 +8,6 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case SET_ACCOUNT:
-      console.log("setting account");
       if (action.payload) {
         return action.payload;
       } else {

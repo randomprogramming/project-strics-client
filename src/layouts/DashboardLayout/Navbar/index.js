@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   Box,
@@ -8,9 +8,7 @@ import {
   Hidden,
   List,
   makeStyles,
-  Typography,
 } from "@material-ui/core";
-import { ListSubheader } from "@material-ui/core";
 import Logo from "../../../components/Logo";
 import CustomNavLink from "./CustomNavLink";
 import DashboardRoundedIcon from "@material-ui/icons/DashboardRounded";
@@ -76,8 +74,13 @@ const Navbar = ({ onMobileClose, openMobile }) => {
       <Divider />
       <Box p={2}>
         <List dense>
-          {navItems.map((item) => (
-            <CustomNavLink text={item.text} href={item.href} icon={item.icon} />
+          {navItems.map((item, index) => (
+            <CustomNavLink
+              key={index}
+              text={item.text}
+              href={item.href}
+              icon={item.icon}
+            />
           ))}
         </List>
       </Box>

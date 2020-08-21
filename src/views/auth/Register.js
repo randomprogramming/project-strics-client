@@ -11,6 +11,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 import { CustomTextField } from "./CustomTextField";
 import Axios from "axios";
+import { REGISTER } from "../../API";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.secondary,
   },
   statusOkText: {
-    color: theme.palette.success.main,
+    color: theme.palette.success.dark,
   },
   statusErrorText: {
-    color: theme.palette.error.main,
+    color: theme.palette.primary.main,
   },
 }));
 
@@ -101,7 +102,7 @@ export const Register = () => {
 
     Axios({
       method: "POST",
-      url: "/api/register",
+      url: REGISTER,
       data: values,
     })
       .then((res) => {
