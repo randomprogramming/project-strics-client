@@ -16,9 +16,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
     color: theme.palette.text.primary,
+    paddingTop: theme.spacing(1),
   },
   linkText: {
     color: theme.palette.secondary,
+  },
+  statusOkText: {
+    color: theme.palette.success.main,
+  },
+  statusErrorText: {
+    color: theme.palette.error.main,
   },
 }));
 
@@ -36,6 +43,14 @@ export const Register = () => {
     [PASSWORD]: "",
     [REPEATED_PASSWORD]: "",
   });
+
+  const serverResponseDefault = {
+    status: null,
+    message: null,
+  };
+
+  const [serverResponse, setserverResponse] = useState(serverResponseDefault);
+  const [isSubmitting, setisSubmitting] = useState(false);
 
   const textFields = [
     {
@@ -65,17 +80,22 @@ export const Register = () => {
   ];
 
   const handleChange = (event) => {
+    // Handle the change of each field
     setvalues({ ...values, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
+    // Handle the submit of the form
+    setisSubmitting(true);
+    setserverResponse(serverResponseDefault);
     event.preventDefault();
 
     for (let field in values) {
       if (values[field].length === 0) {
         // TODO: Create a error field to show this error and other errors
+        // TODO: Send a email to the user to confirm their email
         alert("Some fields are empty.");
-        break;
+        return;
       }
     }
 
@@ -84,8 +104,20 @@ export const Register = () => {
       url: "/api/register",
       data: values,
     })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        setisSubmitting(false);
+        setserverResponse({
+          status: res.status,
+          message: res.data,
+        });
+      })
+      .catch((err) => {
+        setisSubmitting(false);
+        setserverResponse({
+          status: err.response.status,
+          message: err.response.data,
+        });
+      });
   };
 
   return (
@@ -108,10 +140,20 @@ export const Register = () => {
                 onChange={handleChange}
               />
             ))}
+            <Typography
+              className={
+                serverResponse.status === 200
+                  ? classes.statusOkText
+                  : classes.statusErrorText
+              }
+              variant="body1"
+            >
+              {serverResponse.message}
+            </Typography>
             <Box marginY={2}>
               <Button
                 color="primary"
-                // disabled={isSubmitting}
+                disabled={isSubmitting}
                 fullWidth
                 size="large"
                 type="submit"
