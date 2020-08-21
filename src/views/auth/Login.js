@@ -1,5 +1,6 @@
 import React from "react";
+import { Page } from "../../components/Page";
 
 export const Login = () => {
-  return <div>Login page</div>;
+  return <Page title="Login"></Page>;
 };
