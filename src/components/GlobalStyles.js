@@ -22,6 +22,9 @@ const useStyles = makeStyles(() =>
       a: {
         textDecoration: "none",
       },
+      img: {
+        userSelect: "none",
+      },
       "#root": {
         height: "100%",
         width: "100%",

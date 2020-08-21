@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flex: "1 1 auto",
     overflow: "hidden",
-    padding: `${theme.spacing(2)}px 0`,
+    padding: `${theme.spacing(3)}px 0`,
   },
   content: {
     flex: "1 1 auto",
