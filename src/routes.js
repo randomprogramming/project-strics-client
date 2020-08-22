@@ -5,6 +5,8 @@ import { Dashboard } from "./views/Dashboard";
 import { Homepage } from "./views/Homepage";
 import { Login } from "./views/auth/Login";
 import { Register } from "./views/auth/Register";
+import { Inventory } from "./views/Inventory";
+import { AddItem } from "./views/AddItem";
 
 const routes = [
   {
@@ -12,9 +14,10 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: "dashboard", element: <Dashboard /> },
-      { path: "inventory", element: <div>inventory</div> },
+      { path: "inventory", element: <Inventory /> },
       { path: "purchases", element: <div>Purchases</div> },
       { path: "sales", element: <div>sales</div> },
+      { path: "new", element: <AddItem /> },
     ],
   },
   {

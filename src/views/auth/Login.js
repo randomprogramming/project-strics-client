@@ -107,6 +107,7 @@ export const Login = () => {
         // 2. We do a hard redirect, which forces the app to reload, and completely re-mount
         // Since the app autimatically fetches info abut the user when it mounts, in this case
         // we don't have to fetch the info using redux after login
+        // TODO: Redirect to the purchase page if theyre not subscribed
         setTimeout(() => {
           window.location = "/app/dashboard";
         }, 700);
@@ -162,7 +163,7 @@ export const Login = () => {
                 type="submit"
                 variant="contained"
               >
-                Sign up now
+                Sign in now
               </Button>
             </Box>
             <Typography color="textPrimary" variant="body1">
