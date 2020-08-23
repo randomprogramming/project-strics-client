@@ -2,7 +2,7 @@ import React from "react";
 import { Page } from "../components/Page";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minHeight: "100%",
   },

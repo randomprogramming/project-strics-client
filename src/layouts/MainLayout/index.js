@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   contentContainer: {
     display: "flex",
     flex: "1 1 auto",
-    padding: `${theme.spacing(3)}px 0`,
+    marginTop: theme.spacing(3),
   },
   content: {
     flex: "1 1 auto",

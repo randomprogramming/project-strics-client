@@ -11,26 +11,24 @@ export const SearchField = ({
   debounceTimeout,
 }) => {
   return (
-    <Card>
-      <Box p={2} maxWidth="600px">
-        <DebounceInput
-          debounceTimeout={debounceTimeout}
-          onChange={(e) => onChange(e)}
-          value={value}
-          placeholder={placeholder}
-          element={TextField}
-          fullWidth
-          variant="outlined"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchRoundedIcon />
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-    </Card>
+    <Box p={2} maxWidth="600px">
+      <DebounceInput
+        debounceTimeout={debounceTimeout}
+        onChange={(e) => onChange(e)}
+        value={value}
+        placeholder={placeholder}
+        element={TextField}
+        fullWidth
+        variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchRoundedIcon />
+            </InputAdornment>
+          ),
+        }}
+      />
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button } from "@material-ui/core";
+import { Box, Button, makeStyles, Card } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { Page } from "../components/Page";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
@@ -27,12 +27,14 @@ export const Inventory = () => {
           </Button>
         </Box>
         <Box mt={2}>
-          <SearchField
-            onChange={onSearchValueChange}
-            value={searchValue}
-            placeholder="Search inventory"
-            debounceTimeout={0}
-          />
+          <Card>
+            <SearchField
+              onChange={onSearchValueChange}
+              value={searchValue}
+              placeholder="Search inventory"
+              debounceTimeout={0}
+            />
+          </Card>
         </Box>
       </Box>
     </Page>

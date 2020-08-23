@@ -10,6 +10,7 @@ const useStyles = makeStyles(() =>
         "-moz-osx-font-smoothing": "grayscale",
         height: "100%",
         width: "100%",
+        minWidth: "375px",
         fontFamily: "Work Sans, sans-serif",
       },
       body: {

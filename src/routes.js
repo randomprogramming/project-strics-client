@@ -6,7 +6,7 @@ import { Homepage } from "./views/Homepage";
 import { Login } from "./views/auth/Login";
 import { Register } from "./views/auth/Register";
 import { Inventory } from "./views/Inventory";
-import { AddItem } from "./views/AddItem";
+import { AddItem } from "./views/AddItemView/AddItem";
 
 const routes = [
   {

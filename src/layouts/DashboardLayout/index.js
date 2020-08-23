@@ -22,12 +22,6 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: 256,
     },
   },
-  contentContainer: {
-    display: "flex",
-    flex: "1 1 auto",
-    overflow: "hidden",
-    padding: `${theme.spacing(3)}px 0`,
-  },
   content: {
     flex: "1 1 auto",
     height: "100%",
@@ -47,11 +41,9 @@ const DashboardLayout = () => {
         openMobile={isMobileNavOpen}
       />
       <div className={classes.wrapper}>
-        <div className={classes.contentContainer}>
-          <Container maxWidth="xl" className={classes.content}>
-            <Outlet />
-          </Container>
-        </div>
+        <Container maxWidth="xl" className={classes.content}>
+          <Outlet />
+        </Container>
       </div>
     </div>
   );
