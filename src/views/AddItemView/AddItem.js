@@ -73,7 +73,7 @@ export const AddItem = () => {
   const [activeItem, setactiveItem] = useState({});
   const [searchResponse, setsearchResponse] = useState([]); //searchResponse is the server returned data after we filter duplcates, and extract only necessary data
   const [isFetchingData, setisFetchingData] = useState(false);
-  const [isPurchase, setisPurchase] = useState(false);
+  const [isPurchase, setisPurchase] = useState(true);
   const [purchaseAmount, setpurchaseAmount] = useState("");
   const [purchaseAmountError, setpurchaseAmountError] = useState(false);
 
@@ -115,24 +115,34 @@ export const AddItem = () => {
     ]);
   };
 
+  const createTransaction = () => {
+    setpurchaseAmountError(false); // Else hide the error and send a request to the server
+    Axios({
+      method: "POST",
+      url: CREATE_TRANSACTION,
+      data: {
+        ...activeItem,
+        isPurchase,
+        purchaseAmount,
+      },
+    })
+      // TODO: Give the user feedback if the item was added or not
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
   const onSubmit = () => {
+    // If the activeItem is defined
     if (activeItem.id) {
-      if (!parseFloat(purchaseAmount)) {
-        setpurchaseAmountError(true);
-        return;
+      if (isPurchase) {
+        if (parseFloat(purchaseAmount)) {
+          createTransaction();
+        } else {
+          setpurchaseAmountError(true);
+        }
+      } else {
+        createTransaction();
       }
-      setpurchaseAmountError(false);
-      Axios({
-        method: "POST",
-        url: CREATE_TRANSACTION,
-        data: {
-          ...activeItem,
-          isPurchase,
-          purchaseAmount,
-        },
-      })
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
     }
   };
 

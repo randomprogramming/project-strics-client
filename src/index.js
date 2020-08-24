@@ -8,7 +8,7 @@ import store from "./state/store";
 // Only here for debug purposes, should NOT be enabled in production
 // With this line of you you can just open the browser console and type window.store.getState() to see
 // the state of the store(all the data)
-// window.store = store;
+window.store = store;
 
 ReactDOM.render(
   <React.StrictMode>
