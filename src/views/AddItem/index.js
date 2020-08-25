@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const AddItem = () => {
+const AddItem = () => {
   const classes = useStyles();
 
   const [searchValue, setsearchValue] = useState("");
@@ -324,3 +324,5 @@ export const AddItem = () => {
     </Page>
   );
 };
+
+export default AddItem;
