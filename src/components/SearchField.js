@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, TextField, InputAdornment } from "@material-ui/core";
+import { Box, TextField, InputAdornment } from "@material-ui/core";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import PropTypes from "prop-types";
 import { DebounceInput } from "react-debounce-input";
