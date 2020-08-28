@@ -1,14 +1,14 @@
 import React from "react";
-import { Page } from "../components/Page";
+import { Page } from "../../components/Page";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: "100%",
+    paddingTop: theme.spacing(3),
   },
 }));
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const classes = useStyles();
 
   return (
@@ -17,3 +17,5 @@ export const Dashboard = () => {
     </Page>
   );
 };
+
+export default Dashboard;
