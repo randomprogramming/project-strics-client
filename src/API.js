@@ -9,3 +9,6 @@ export const SALES = "/api/sales";
 export function markTransactionSoldUrl(id) {
   return `/api/mark-transaction-sold/${id}`;
 }
+export function deleteTransaction(id) {
+  return `/api/delete-transaction/${id}`;
+}

@@ -16,7 +16,7 @@ import {
 import AttachMoneyRoundedIcon from "@material-ui/icons/AttachMoneyRounded";
 import ClearIcon from "@material-ui/icons/Clear";
 import Axios from "axios";
-import { markTransactionSoldUrl } from "../../API";
+import { markTransactionSoldUrl, deleteTransaction } from "../../API";
 
 const useStyles = makeStyles((theme) => ({
   image: {
@@ -46,6 +46,12 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "center",
     },
   },
+  centeredFlex: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   sellButton: {
     "&:hover": {
       color: theme.palette.success.main,
@@ -55,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   greenBackground: {
+    color: theme.palette.common.white,
     backgroundColor: theme.palette.success.main,
     "&:hover": {
       backgroundColor: theme.palette.success.dark,
@@ -91,20 +98,20 @@ export const InventoryItemContainer = ({
   // does its thing
   const [isMarkingAsSold, setisMarkingAsSold] = useState(false);
   const [hasError, sethasError] = useState(false);
+  const [isDeleteMenuOpen, setisDeleteMenuOpen] = useState(false);
 
-  const iconSize = 32;
+  const ICON_SIZE = 32;
 
   const handleSellButton = () => {
     setisSaleMenuOpen(!isSaleMenuOpen);
   };
 
-  const handleSaleAmountChange = (e) => {
-    setsaleAmount(e.target.value);
+  const handleRemoveButton = () => {
+    setisDeleteMenuOpen(!isDeleteMenuOpen);
   };
 
-  const handleRemoveButton = (id) => {
-    // TODO: Add this
-    console.log(id);
+  const handleSaleAmountChange = (e) => {
+    setsaleAmount(e.target.value);
   };
 
   const handleMarkAsSold = (id) => {
@@ -136,6 +143,17 @@ export const InventoryItemContainer = ({
     }
   };
 
+  const handleDelete = (id) => {
+    const url = deleteTransaction(id);
+
+    Axios({
+      method: "DELETE",
+      url,
+    })
+      .then((res) => fetchContent())
+      .catch((err) => console.log(err));
+  };
+
   return (
     <ListItem disableGutters>
       <Card className={classes.card}>
@@ -165,12 +183,7 @@ export const InventoryItemContainer = ({
             <Grid item xs={6} md={2}>
               {/* ACTION BUTTONS */}
               <Box className={classes.iconContainer}>
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  alignItems="center"
-                  justifyContent="center"
-                >
+                <Box className={classes.centeredFlex}>
                   <Box>
                     <Tooltip title="Mark as Sold">
                       <IconButton
@@ -178,7 +191,7 @@ export const InventoryItemContainer = ({
                         onClick={handleSellButton}
                       >
                         <AttachMoneyRoundedIcon
-                          style={{ fontSize: iconSize }}
+                          style={{ fontSize: ICON_SIZE }}
                         />
                       </IconButton>
                     </Tooltip>
@@ -233,14 +246,35 @@ export const InventoryItemContainer = ({
             <Grid item xs={6} md={2}>
               {/* REMOVE BUTTON */}
               <Box className={classes.iconContainer}>
-                <Tooltip title="Remove from Inventory">
-                  <IconButton
-                    className={classes.deleteButton}
-                    onClick={() => handleRemoveButton(id)}
-                  >
-                    <ClearIcon style={{ fontSize: iconSize }} />
-                  </IconButton>
-                </Tooltip>
+                <Box className={classes.centeredFlex}>
+                  <Box>
+                    <Tooltip title="Remove from Inventory">
+                      <IconButton
+                        className={classes.deleteButton}
+                        onClick={() => handleRemoveButton(id)}
+                      >
+                        <ClearIcon style={{ fontSize: ICON_SIZE }} />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
+                  <Box>
+                    {isDeleteMenuOpen && (
+                      <Box textAlign="center">
+                        <Typography variant="h6">
+                          Remove this item from inventory?
+                        </Typography>
+                        <Button
+                          fullWidth
+                          color="primary"
+                          variant="contained"
+                          onClick={() => handleDelete(id)}
+                        >
+                          Remove
+                        </Button>
+                      </Box>
+                    )}
+                  </Box>
+                </Box>
               </Box>
             </Grid>
           </Grid>
