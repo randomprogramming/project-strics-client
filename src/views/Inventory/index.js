@@ -28,7 +28,7 @@ const Inventory = () => {
     setsearchValue(e.target.value);
   };
 
-  useEffect(() => {
+  const fetchContent = () => {
     setisFetching(true);
     Axios({
       method: "GET",
@@ -42,6 +42,10 @@ const Inventory = () => {
         setisFetching(false);
         console.log(err);
       });
+  };
+
+  useEffect(() => {
+    fetchContent();
   }, []);
 
   return (
@@ -93,6 +97,7 @@ const Inventory = () => {
                   name={item.sneaker.name}
                   title={item.sneaker.title}
                   imageUrl={item.sneaker.media.smallImageUrl}
+                  fetchContent={fetchContent}
                 />
               ))
             )}

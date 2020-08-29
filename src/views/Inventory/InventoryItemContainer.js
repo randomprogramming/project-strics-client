@@ -80,6 +80,7 @@ export const InventoryItemContainer = ({
   name,
   title,
   imageUrl,
+  fetchContent,
 }) => {
   const classes = useStyles();
 
@@ -122,7 +123,8 @@ export const InventoryItemContainer = ({
       })
         .then((res) => {
           setisMarkingAsSold(false);
-          console.log(res);
+          // If there was no error, we want to fetch the data again
+          fetchContent();
         })
         .catch((err) => {
           setisMarkingAsSold(false);
@@ -258,4 +260,5 @@ InventoryItemContainer.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
   imageUrl: PropTypes.string,
+  fetchContent: PropTypes.func,
 };
