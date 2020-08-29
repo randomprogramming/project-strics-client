@@ -68,8 +68,9 @@ const TransactionView = ({ title, purchases, sales }) => {
               id={transaction.id}
               purchasedAmount={transaction.purchasedAmount}
               purchasedDate={transaction.purchasedDate}
-              saleAmount={transaction.saleAmount}
-              saleDate={transaction.saleDate}
+              // Only send the info about the sale if we are on the sales page
+              saleAmount={sales && transaction.saleAmount}
+              saleDate={sales && transaction.saleDate}
               brand={transaction.sneaker.brand}
               colorway={transaction.sneaker.colorway}
               shoe={transaction.sneaker.shoe}

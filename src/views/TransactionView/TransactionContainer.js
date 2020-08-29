@@ -31,12 +31,17 @@ const useStyles = makeStyles((theme) => ({
   amountText: {
     color: theme.palette.primary.main,
   },
+  amountTextGreen: {
+    color: theme.palette.success.main,
+  },
 }));
 
 export const TransactionContainer = ({
   id,
   purchasedAmount,
   purchasedDate,
+  saleAmount,
+  saleDate,
   brand,
   colorway,
   shoe,
@@ -90,6 +95,28 @@ export const TransactionContainer = ({
                 </Typography>
               </Box>
             </Grid>
+            {saleDate && (
+              <Grid item xs={6} md={2}>
+                {/* SALE DATE */}
+                <Box className={classes.fullColumnFlex} textAlign="center">
+                  <Typography variant="body1">Sale Date</Typography>
+                  <Typography variant="h5">
+                    {saleDate.split("T")[0].replaceAll("-", "/")}
+                  </Typography>
+                </Box>
+              </Grid>
+            )}
+            {saleAmount && (
+              <Grid item xs={6} md={2}>
+                {/* SALE PRICE */}
+                <Box className={classes.fullColumnFlex} textAlign="center">
+                  <Typography variant="body1">Money Gained</Typography>
+                  <Typography variant="h5" className={classes.amountTextGreen}>
+                    {saleAmount}
+                  </Typography>
+                </Box>
+              </Grid>
+            )}
           </Grid>
         </Box>
       </Card>
@@ -101,6 +128,8 @@ TransactionContainer.propTypes = {
   id: PropTypes.string,
   purchasedAmount: PropTypes.number,
   purchasedDate: PropTypes.string,
+  saleAmount: PropTypes.number,
+  saleDate: PropTypes.string,
   brand: PropTypes.string,
   colorway: PropTypes.string,
   shoe: PropTypes.string,
