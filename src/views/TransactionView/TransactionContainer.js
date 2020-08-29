@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
       textAlign: "center",
     },
   },
+  amountText: {
+    color: theme.palette.primary.main,
+  },
 }));
 
 export const TransactionContainer = ({
@@ -67,6 +70,24 @@ export const TransactionContainer = ({
                   {shoe.replace(brand + " ", "")}
                 </Typography>
                 <Typography variant="body2">{name}</Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={2}>
+              {/* PURCHASE DATE */}
+              <Box className={classes.fullColumnFlex} textAlign="center">
+                <Typography variant="body1">Purchase Date</Typography>
+                <Typography variant="h5">
+                  {purchasedDate.split("T")[0].replaceAll("-", "/")}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={2}>
+              {/* PURCHASE PRICE */}
+              <Box className={classes.fullColumnFlex} textAlign="center">
+                <Typography variant="body1">Money Spent</Typography>
+                <Typography variant="h5" className={classes.amountText}>
+                  {purchasedAmount}
+                </Typography>
               </Box>
             </Grid>
           </Grid>

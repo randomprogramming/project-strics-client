@@ -68,6 +68,8 @@ const TransactionView = ({ title, purchases, sales }) => {
               id={transaction.id}
               purchasedAmount={transaction.purchasedAmount}
               purchasedDate={transaction.purchasedDate}
+              saleAmount={transaction.saleAmount}
+              saleDate={transaction.saleDate}
               brand={transaction.sneaker.brand}
               colorway={transaction.sneaker.colorway}
               shoe={transaction.sneaker.shoe}

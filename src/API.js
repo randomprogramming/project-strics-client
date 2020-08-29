@@ -6,3 +6,6 @@ export const LOGGED_IN_ACCOUNT = "/api/logged-in-account";
 export const INVENTORY = "/api/inventory";
 export const PURHCASES = "/api/purchases";
 export const SALES = "/api/sales";
+export function markTransactionSoldUrl(id) {
+  return `/api/mark-transaction-sold/${id}`;
+}
