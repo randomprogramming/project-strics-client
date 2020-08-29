@@ -16,8 +16,11 @@ const routes = [
     children: [
       { path: "dashboard", element: <Dashboard /> },
       { path: "inventory", element: <Inventory /> },
-      { path: "purchases", element: <TransactionView title="Purchases" /> },
-      { path: "sales", element: <TransactionView title="Sales" /> },
+      {
+        path: "purchases",
+        element: <TransactionView purchases title="Purchases" />,
+      },
+      { path: "sales", element: <TransactionView sales title="Sales" /> },
       { path: "new", element: <AddItem /> },
     ],
   },
