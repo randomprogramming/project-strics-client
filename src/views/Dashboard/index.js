@@ -3,7 +3,11 @@ import { Page } from "../../components/Page";
 import { makeStyles, Grid, Box, Typography } from "@material-ui/core";
 import { StatCard } from "./StatCard";
 import Axios from "axios";
-import { TOTAL_PROFIT, TRANSACTION_STATS } from "../../API";
+import {
+  TOTAL_PROFIT,
+  TRANSACTION_STATS,
+  CURRENT_MONTH_PROFIT,
+} from "../../API";
 import AttachMoneyOutlinedIcon from "@material-ui/icons/AttachMoneyRounded";
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 import LoyaltyOutlinedIcon from "@material-ui/icons/LoyaltyOutlined";
@@ -42,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles();
   const [totalProfit, settotalProfit] = useState(0);
+  const [currentMonthProfit, setcurrentMonthProfit] = useState(0);
   const [transactionStats, settransactionStats] = useState({
     currentMonthPurchases: 0,
     currentMonthSales: 0,
@@ -54,7 +59,7 @@ const Dashboard = () => {
       // If the change is positive
       return (
         <span className={classes.positiveChange}>
-          <TrendingUpRoundedIcon className={classes.icon} />{" "}
+          <TrendingUpRoundedIcon className={classes.icon} />
           {transactionStats.salesIncreasePercentage + "%"}
         </span>
       );
@@ -62,7 +67,7 @@ const Dashboard = () => {
       // If the change is negative
       return (
         <span className={classes.negativeChange}>
-          <TrendingDownRoundedIcon className={classes.icon} />{" "}
+          <TrendingDownRoundedIcon className={classes.icon} />
           {transactionStats.salesIncreasePercentage + "%"}
         </span>
       );
@@ -82,7 +87,7 @@ const Dashboard = () => {
       // If the change is positive
       return (
         <span className={classes.positiveChange}>
-          <TrendingUpRoundedIcon className={classes.icon} />{" "}
+          <TrendingUpRoundedIcon className={classes.icon} />
           {transactionStats.purchasesIncreasePercentage + "%"}
         </span>
       );
@@ -90,7 +95,7 @@ const Dashboard = () => {
       // If the change is negative
       return (
         <span className={classes.negativeChange}>
-          <TrendingDownRoundedIcon className={classes.icon} />{" "}
+          <TrendingDownRoundedIcon className={classes.icon} />
           {transactionStats.purchasesIncreasePercentage + "%"}
         </span>
       );
@@ -123,16 +128,35 @@ const Dashboard = () => {
       .catch((err) => console.log(err));
   };
 
+  const fetchCurrentMonthProfit = async () => {
+    Axios({
+      method: "GET",
+      url: CURRENT_MONTH_PROFIT,
+    })
+      .then((res) => setcurrentMonthProfit(res.data))
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     fetchTotalProfit();
     fetchTransactionStats();
+    fetchCurrentMonthProfit();
   }, []);
 
   return (
     <Page className={classes.root} title="Dashboard">
       <Grid container spacing={3}>
         <Grid item xs={12} md={3}>
-          <StatCard>World</StatCard>
+          <StatCard
+            alignChildrenToEnd
+            title="Current month profit"
+            subtitle={currentMonthProfit}
+            icon={AttachMoneyOutlinedIcon}
+          >
+            <Typography variant="body2">
+              Profit calculated from items sold during the ongoing month.
+            </Typography>
+          </StatCard>
         </Grid>
         <Grid item xs={12} md={3}>
           <StatCard
@@ -167,12 +191,10 @@ const Dashboard = () => {
             subtitle={totalProfit}
             icon={AttachMoneyOutlinedIcon}
           >
-            <Box height="100%" display="flex" alignItems="center">
-              <Typography variant="body2">
-                Items that weren't marked as purchases aren't accounted in total
-                profit.
-              </Typography>
-            </Box>
+            <Typography variant="body2">
+              Items that weren't marked as purchases aren't accounted in profit
+              calculations.
+            </Typography>
           </StatCard>
         </Grid>
       </Grid>

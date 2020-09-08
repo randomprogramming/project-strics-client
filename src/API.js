@@ -14,3 +14,4 @@ export function deleteTransaction(id) {
 }
 export const TOTAL_PROFIT = "/api/total-profit";
 export const TRANSACTION_STATS = "/api/transaction-stats";
+export const CURRENT_MONTH_PROFIT = "/api/current-month-profit";
