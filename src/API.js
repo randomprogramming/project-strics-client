@@ -12,3 +12,5 @@ export function markTransactionSoldUrl(id) {
 export function deleteTransaction(id) {
   return `/api/delete-transaction/${id}`;
 }
+export const TOTAL_PROFIT = "/api/total-profit";
+export const TRANSACTION_STATS = "/api/transaction-stats";
