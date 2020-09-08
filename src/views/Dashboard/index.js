@@ -17,14 +17,17 @@ const useStyles = makeStyles((theme) => ({
   },
   positiveChange: {
     color: theme.palette.success.main,
+    fontWeight: "bold",
     marginRight: theme.spacing(1),
   },
   negativeChange: {
     color: theme.palette.primary.main,
+    fontWeight: "bold",
     marginRight: theme.spacing(1),
   },
   zeroChange: {
-    color: theme.palette.grey[500],
+    color: theme.palette.grey[600],
+    fontWeight: "bold",
     marginRight: theme.spacing(1),
   },
   textWithIcon: {
