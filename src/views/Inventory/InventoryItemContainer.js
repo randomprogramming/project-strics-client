@@ -150,7 +150,7 @@ export const InventoryItemContainer = ({
       method: "DELETE",
       url,
     })
-      .then((res) => fetchContent())
+      .then(() => fetchContent())
       .catch((err) => console.log(err));
   };
 
@@ -230,7 +230,7 @@ export const InventoryItemContainer = ({
               <Box className={classes.fullColumnFlex} textAlign="center">
                 <Typography variant="body1">Purchase Date</Typography>
                 <Typography variant="h5">
-                  {purchasedDate.split("T")[0].replaceAll("-", "/")}
+                  {purchasedDate.replaceAll("-", "/")}
                 </Typography>
               </Box>
             </Grid>

@@ -82,7 +82,7 @@ export const TransactionContainer = ({
               <Box className={classes.fullColumnFlex} textAlign="center">
                 <Typography variant="body1">Purchase Date</Typography>
                 <Typography variant="h5">
-                  {purchasedDate.split("T")[0].replaceAll("-", "/")}
+                  {purchasedDate.replaceAll("-", "/")}
                 </Typography>
               </Box>
             </Grid>
@@ -101,7 +101,7 @@ export const TransactionContainer = ({
                 <Box className={classes.fullColumnFlex} textAlign="center">
                   <Typography variant="body1">Sale Date</Typography>
                   <Typography variant="h5">
-                    {saleDate.split("T")[0].replaceAll("-", "/")}
+                    {saleDate.replaceAll("-", "/")}
                   </Typography>
                 </Box>
               </Grid>
