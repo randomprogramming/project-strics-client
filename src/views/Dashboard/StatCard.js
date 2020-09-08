@@ -46,7 +46,7 @@ export const StatCard = ({
   }, []);
 
   return (
-    <Card className={classes.card} elevation={6}>
+    <Card className={classes.card} elevation={4}>
       <Box display="flex" flexDirection="column" height="100%" width="100%">
         <Box flex={3} display="flex" flexDirection="row">
           <Box flex={1}>

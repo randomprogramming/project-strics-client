@@ -154,6 +154,7 @@ const Dashboard = () => {
             icon={AttachMoneyOutlinedIcon}
           >
             <Typography variant="body2">
+              {/* TODO: Format currency containers */}
               Profit calculated from items sold during the ongoing month.
             </Typography>
           </StatCard>
