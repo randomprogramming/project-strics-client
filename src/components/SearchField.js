@@ -9,10 +9,12 @@ export const SearchField = ({
   value,
   placeholder,
   debounceTimeout,
+  disabled,
 }) => {
   return (
     <Box p={2} maxWidth="600px">
       <DebounceInput
+        disabled={disabled}
         debounceTimeout={debounceTimeout}
         onChange={(e) => onChange(e)}
         value={value}
@@ -37,4 +39,5 @@ SearchField.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   debounceTimeout: PropTypes.number,
+  disabled: PropTypes.bool,
 };

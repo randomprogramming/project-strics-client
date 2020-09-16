@@ -7,6 +7,7 @@ import {
   List,
   ListItem,
   Typography,
+  TextField,
 } from "@material-ui/core";
 import { Link as RouterLink } from "react-router-dom";
 import { Page } from "../../components/Page";
@@ -19,10 +20,13 @@ import { InventoryItemContainer } from "./InventoryItemContainer";
 const Inventory = () => {
   const [searchValue, setsearchValue] = useState("");
   const [isFetching, setisFetching] = useState(false);
-  const [inventory, setinventory] = useState({
-    data: [],
-    length: 0,
-  });
+  // This is the inventory that is fetched from the server
+  // This will not be changed and this is used for the search feature
+  // Because we need a place to store the users inventory
+  const [fetchedInventory, setfetchedInventory] = useState([]);
+  // This is the inventory that gets shown to the user
+  // This can and will be changed according to the Search field value
+  const [processedInventory, setprocessedInventory] = useState([]);
 
   const onSearchValueChange = (e) => {
     setsearchValue(e.target.value);
@@ -36,13 +40,30 @@ const Inventory = () => {
     })
       .then((res) => {
         setisFetching(false);
-        setinventory(res.data);
+        setfetchedInventory(res.data.data);
       })
       .catch((err) => {
         setisFetching(false);
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    // In the beggining, fetchedInventory and proccesedInventory should be the same
+    if (searchValue.length === 0) {
+      setprocessedInventory(fetchedInventory);
+    }
+  }, [fetchedInventory]);
+
+  useEffect(() => {
+    // Whenever the fetchedInventory or searchValue changes,
+    // make sure that the processedInventory is up to date
+    setprocessedInventory(
+      fetchedInventory.filter((item) =>
+        item.sneaker.title.toLowerCase().includes(searchValue.toLowerCase())
+      )
+    );
+  }, [searchValue, fetchedInventory]);
 
   useEffect(() => {
     fetchContent();
@@ -64,19 +85,26 @@ const Inventory = () => {
         </Box>
         <Box mt={2}>
           <Card>
-            {/* TODO: Make this work */}
             <SearchField
               onChange={onSearchValueChange}
               value={searchValue}
               placeholder="Search inventory"
-              debounceTimeout={0}
+              debounceTimeout={500}
             />
           </Card>
         </Box>
         <Box>
           <List>
             <ListItem disableGutters>
-              <Typography variant="h4">{inventory.length} item(s)</Typography>
+              {searchValue.length > 0 ? (
+                <Typography variant="h4">
+                  {processedInventory.length} item(s) matching "{searchValue}"
+                </Typography>
+              ) : (
+                <Typography variant="h4">
+                  {processedInventory.length} item(s)
+                </Typography>
+              )}
             </ListItem>
             {isFetching ? (
               <ListItem disableGutters>
@@ -85,7 +113,7 @@ const Inventory = () => {
                 </Box>
               </ListItem>
             ) : (
-              inventory.data.map((item) => (
+              processedInventory.map((item) => (
                 <InventoryItemContainer
                   key={item.id}
                   id={item.id}
