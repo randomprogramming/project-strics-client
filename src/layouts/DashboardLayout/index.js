@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
 import { makeStyles, Container } from "@material-ui/core";
 import Topbar from "../../components/Topbar";
@@ -31,21 +32,30 @@ const useStyles = makeStyles((theme) => ({
 
 const DashboardLayout = () => {
   const classes = useStyles();
+  const loggedIn = useSelector((state) => state.accountReducer.loggedIn);
+  const subscribed = useSelector((state) => state.accountReducer.subscribed);
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
-  return (
-    <div className={classes.root}>
-      <Topbar onMobileNavOpen={() => setMobileNavOpen(true)} />
-      <Navbar
-        onMobileClose={() => setMobileNavOpen(false)}
-        openMobile={isMobileNavOpen}
-      />
-      <div className={classes.wrapper}>
-        <Container maxWidth="xl" className={classes.content}>
-          <Outlet />
-        </Container>
+  // Check if user is logged in or not and if user is subsribed or not
+  return loggedIn ? (
+    subscribed ? (
+      <div className={classes.root}>
+        <Topbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+        <Navbar
+          onMobileClose={() => setMobileNavOpen(false)}
+          openMobile={isMobileNavOpen}
+        />
+        <div className={classes.wrapper}>
+          <Container maxWidth="xl" className={classes.content}>
+            <Outlet />
+          </Container>
+        </div>
       </div>
-    </div>
+    ) : (
+      <div>Please Subscribe to access this site.</div>
+    )
+  ) : (
+    <div>Please Log in to access this site.</div>
   );
 };
 
