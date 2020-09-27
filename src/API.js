@@ -15,3 +15,5 @@ export function deleteTransaction(id) {
 export const TOTAL_PROFIT = "/api/total-profit";
 export const TRANSACTION_STATS = "/api/transaction-stats";
 export const CURRENT_MONTH_PROFIT = "/api/current-month-profit";
+export const CREATE_SUBSCRIPTION = "/api/create-subscription";
+export const RETRY_INVOICE = "/api/retry-invoice";

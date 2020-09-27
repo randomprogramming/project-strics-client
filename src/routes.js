@@ -8,6 +8,7 @@ import { Register } from "./views/auth/Register";
 import Inventory from "./views/Inventory";
 import AddItem from "./views/AddItem";
 import TransactionView from "./views/TransactionView";
+import Subscribe from "./views/Subscribe";
 
 const routes = [
   {
@@ -31,6 +32,7 @@ const routes = [
       { path: "", element: <Homepage /> },
       { path: "login", element: <Login /> },
       { path: "register", element: <Register /> },
+      { path: "subscribe", element: <Subscribe /> },
     ],
   },
 ];

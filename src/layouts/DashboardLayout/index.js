@@ -32,8 +32,10 @@ const useStyles = makeStyles((theme) => ({
 
 const DashboardLayout = () => {
   const classes = useStyles();
+
   const loggedIn = useSelector((state) => state.accountReducer.loggedIn);
   const subscribed = useSelector((state) => state.accountReducer.subscribed);
+
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
   // Check if user is logged in or not and if user is subsribed or not
@@ -52,9 +54,11 @@ const DashboardLayout = () => {
         </div>
       </div>
     ) : (
+      // TODO: Get a component for this
       <div>Please Subscribe to access this site.</div>
     )
   ) : (
+    // TODO: Get a component for this
     <div>Please Log in to access this site.</div>
   );
 };
